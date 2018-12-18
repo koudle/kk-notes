@@ -2,6 +2,12 @@
 
 
 
+## Thread
+
+
+
+
+
 ## File
 
 
@@ -41,16 +47,16 @@ E:\workspace\Test\test.txt
 
 ### 2.存储目录
 
-| 方法                                                  | 存储类型 | 存储路径                                                     | 是否需要存储权限 | 应用删除后目录是否保留 |      | api  |
-| ----------------------------------------------------- | -------- | ------------------------------------------------------------ | ---------------- | ---------------------- | ---- | ---- |
-| context.getCacheDir()                                 | 内部存储 | /data/user/0/com.tencent.huiyin/cache                        | 不需要           | 不保留                 |      | 1    |
-| context.getFilesDir()                                 | 内部存储 | /data/user/0/com.tencent.huiyin/files                        | 不需要           | 不保留                 |      | 1    |
-| context.getObbDir()                                   | 外部存储 | /storage/emulated/0/Android/obb/com.tencent.huiyin           | 需要             | 不保留                 |      | 11   |
-| context.getCodeCacheDir()                             | 内部存储 | /data/user/0/com.tencent.huiyin/code_cache                   | 不需要           | 不保留                 |      | 21   |
-| context.getExternalCacheDir()                         | 外部存储 | /storage/emulated/0/Android/data/com.tencent.huiyin/cache    | 需要             | 不保留                 |      | 8    |
-| context.getExternalFilesDir("type")                   | 外部存储 | /storage/emulated/0/Android/data/com.tencent.huiyin/files/“type” | 需要             | 不保留                 |      | 8    |
-| Environment.getDataDirectory()                        | 内部存储 | /data                                                        | Root             |                        |      | 1    |
-| Environment.getDownloadCacheDirectory()               | 内部存储 | /data/cache                                                  | Root             |                        |      | 1    |
-| Environment.getExternalStorageDirectory()             | 外部存储 | /storage/emulated/0                                          | 需要             | 保留                   |      | 1    |
-| Environment.getExternalStoragePublicDirectory("type") | 外部存储 | /storage/emulated/0/"type"                                   | 需要             | 保留                   |      | 8    |
-| Environment.getRootDirectory()                        | 外部存储 | /system                                                      | Root             |                        |      |      |
+| 方法                                                  | 存储类型 | 存储路径                                           | 是否需要存储权限 | 应用删除后目录是否保留 |      | api  |
+| ----------------------------------------------------- | -------- | -------------------------------------------------- | ---------------- | ---------------------- | ---- | ---- |
+| context.getCacheDir()                                 | 内部存储 | /data/user/0/包名/cache                            | 不需要           | 不保留                 |      | 1    |
+| context.getFilesDir()                                 | 内部存储 | /data/user/0/包名/files                            | 不需要           | 不保留                 |      | 1    |
+| context.getObbDir()                                   | 外部存储 | /storage/emulated/0/Android/obb/包名               | 需要             | 不保留                 |      | 11   |
+| context.getCodeCacheDir()                             | 内部存储 | /data/user/0/包名/code_cache                       | 不需要           | 不保留                 |      | 21   |
+| context.getExternalCacheDir()                         | 外部存储 | /storage/emulated/0/Android/data/包名/cache        | 需要             | 不保留                 |      | 8    |
+| context.getExternalFilesDir("type")                   | 外部存储 | /storage/emulated/0/Android/data/包名/files/“type” | 需要             | 不保留                 |      | 8    |
+| Environment.getDataDirectory()                        | 内部存储 | /data                                              | Root             |                        |      | 1    |
+| Environment.getDownloadCacheDirectory()               | 内部存储 | /data/cache                                        | Root             |                        |      | 1    |
+| Environment.getExternalStorageDirectory()             | 外部存储 | /storage/emulated/0                                | 需要             | 保留                   |      | 1    |
+| Environment.getExternalStoragePublicDirectory("type") | 外部存储 | /storage/emulated/0/"type"                         | 需要             | 保留                   |      | 8    |
+| Environment.getRootDirectory()                        | 外部存储 | /system                                            | Root             |                        |      |      |
