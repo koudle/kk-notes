@@ -31,3 +31,63 @@ Fragment执行onDestoryView，和Activity的onDestory不一样，不会销毁当
            return rootView;
        }
    ```
+
+
+
+## 2.ViewPager中使用Fragment的问题
+
+ViewPager中可以使用Fragment，用FragmentPagerAdapter，但是有一个问题，Fragment用在ViewPager中是作为一个View添加进去的，导致Fragment的声明周期异常，例如ViewPager中，有A、B两个Fragment，当ViewPager加载时：
+
+1、A、B两个Fragment会同时加载，而且都会执行onResume
+
+2、滑动View，让A消失，B出现，A也不会执行onPause
+
+3、打开另一个Activity，A、B都会执行onPause，在返回时，A、B都会执行onResume，即使只有一个看的见
+
+这样会让依赖Fragment声明周期处理一些逻辑的会异常，怎么做呢，用Fragment中的`setUserVisibleHint(boolean isVisibleToUser)`这个函数
+
+
+
+### 2.1 在Fragment里Override setUserVisibleHint
+
+```
+@Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        logger.debug("isVisibleToUser:{}",isVisibleToUser);
+        //根据isVisibleToUser  来判断 onPause和onResume
+        if(isVisibleToUser) {
+        	//onResume
+        }else {
+           //onPause
+        }            
+    }
+```
+
+### 2.2 在ViewPager里监听Fragment的显示情况
+
+```
+viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position == 0){
+                    fragment.setUserVisibleHint(true);
+                }else {
+                    fragment.setUserVisibleHint(false);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+```
+
+
+
